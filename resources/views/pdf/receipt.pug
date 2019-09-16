@@ -1,0 +1,84 @@
+extends pdf
+
+block styles
+    style.
+        .text-center {
+            text-align: center;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        .content {
+            height: 100%;
+            position: relative;
+        }
+        
+        .barcode {
+            margin-top: 150px;
+            text-align: center;
+        }
+
+        .barcode-img {
+            max-width: 168px;
+            height: 120px;
+        }
+
+        .reference {
+            letter-spacing: 0.5rem;
+            padding: 1em;
+        }
+
+        .expiration {
+            padding: 1em;
+            font-weight: bold;
+        }
+
+        .red {
+            color: red;
+        }
+
+        .float-left {
+            float: left;
+        }
+
+        .float-right {
+            float: right;
+        }
+
+        .display-inline {
+            display: inline-block;
+        }
+
+        .col-6 {
+            width: 50%;
+        }
+
+block content
+    .content
+        .container
+            .float-left.col-6.
+                # Orden #{order._id}
+            .float-right.col-6.text-right.
+                #{createdAt}
+            .receipt
+                table.table.table-bordered
+                    tfoot
+                        tr
+                            td Subtotal
+                            td $ #{order.total} MXN
+                        tr
+                            td Envìo
+                            td $ #{order.deliveries[0].amount} MXN
+                        tr
+                            td Total
+                            td $ #{order.payments[0].amount} MXN
+            .barcode
+                div REFERENCIA DE PAGO
+                    .reference #{order.payments[0].reference}
+                div
+                    img.barcode-img(src=barcode)
+            .expiration.text-center.red
+                div Referencia válida antes de:
+                div #{expirationDate}

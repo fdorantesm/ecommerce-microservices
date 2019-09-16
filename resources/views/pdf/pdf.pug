@@ -1,0 +1,80 @@
+html
+  head
+    block styles
+    style.
+        html{
+            width:100%;
+            height:100vh;
+            font-family: sans-serif;
+        }
+        body{
+            margin:0;
+            height:inherit;
+            width:100%;
+        }
+
+        .page{
+            display:block;
+            width:100%;
+            height:100%;
+            position:relative;
+        }
+
+        .page section {
+            margin-bottom:50px;
+        }
+
+    
+        @page{
+            background-image: url("https://res.cloudinary.com/merengue-merengue/image/upload/v1539278685/MM/static/recibo.png");
+            background-image-resize:6;
+            background-size: 100% 100%;
+            margin-top:350px;
+            margin-bottom:140px;
+        }        
+
+        table{
+            width:100%;
+            border-collapse: collapse;
+            margin: 1.5em 0;
+        }
+
+        table.table tr td,
+        table.table tr th {
+            padding:10px;
+            font-size:12px;
+            text-align: center;
+            /*font-weight:bold;*/
+        }
+
+        table.table-bordered tr td,
+        table.table-bordered tr th {
+            border:0.5px solid #ddd;
+        }
+        
+        table.table tbody tr:nth-child(odd){
+            background: #F7F7F7;
+        }
+        table.table tbody tr:nth-child(even){
+            background: #FFF;
+        }
+
+        .tipo{
+            position:relative;
+            padding:10px 15px;
+            text-align: center;
+            color:#FFF;
+            font-weight:bold;
+            text-transform: uppercase;
+        }
+
+        .total{
+            margin: 50px 0;
+        }
+
+        p.parragraph{
+            margin: 2em 0;
+        }
+
+  body
+    block content
