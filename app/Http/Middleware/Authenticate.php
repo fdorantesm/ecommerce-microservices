@@ -56,7 +56,11 @@ class Authenticate
         if ($requestable) {
             $axios = new Axios();
             try {
-                $response = $axios->request('HEAD', $endpoint, $options);
+                if (isset($options)) {
+                    $response = $axios->request('GET', $endpoint, $options);
+                } else {
+                    $response = $axios->request('GET', $endpoint);
+                }
                 return $next($request);
             } catch (\Exception $e) {
                 return response('Unauthorizeds.', 401);
