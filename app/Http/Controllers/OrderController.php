@@ -49,9 +49,9 @@ class OrderController extends Controller
                 $data["createdAt"] = ucfirst($createdAt->monthName)." {$createdAt->day}, {$createdAt->year} {$createdAt->format('g:i A')}";
                 $data["expirationDate"] = ucfirst($expirationDate->monthName)." {$expirationDate->day}, {$expirationDate->year} {$expirationDate->format('g:i A')}";
                 if ($body->data->payments[0]->method === 'spei') {
-                    $response["spei"] = [
+                    $data["spei"] = [
                         "clabe" => $body->data->payments[0]->clabe,
-                        "bank" => $body->data->payments[0]->bank,
+                        "bank" => $body->data->payments[0]->receivingAccountBank,
                         "receiving_account_number" => $body->data->payments[0]->receivingAccountNumber,
                         "receiving_account_bank" => $body->data->payments[0]->receivingAccountBank,
                         "expires_at" => Carbon::createFromTimestamp($body->data->payments[0]->referenceExpiration)->toDateTimeString()

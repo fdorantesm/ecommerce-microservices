@@ -76,9 +76,23 @@ block content
                             td $ #{order.payments[0].amount} MXN
             .barcode
                 div REFERENCIA DE PAGO
-                    .reference #{order.payments[0].reference}
-                div
-                    img.barcode-img(src=barcode)
+                    if order.payments[0].method === 'oxxo'
+                        .reference #{order.payments[0].reference}
+                        div
+                            img.barcode-img(src=barcode)
+                    if order.payments[0].method === 'spei'
+                        table.table.table-bordered(style="width:230px;display:block;margin:20px auto;")
+                            tbody
+                                tr
+                                    td Clabe
+                                    td #{order.payments[0].clabe}
+                                tr
+                                    td Banco
+                                    td #{order.payments[0].receivingAccountBank}
+                                tr
+                                    td Cuenta
+                                    td #{order.payments[0].receivingAccountNumber}
+                        
             .expiration.text-center.red
                 div Referencia válida antes de:
                 div #{expirationDate}
